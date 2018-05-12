@@ -26,3 +26,10 @@ The crack IRE-NICAR staff has already installed R, R Studio and the tidyverse on
 We're going to be creating several tables (known in R as data frames), and of course we'll be naming them. We use an arrow-like thing called an <code>assignment operator</code> to do that. Here it is: <code><-</code>. You'll be using it a lot, and there's a shortcut: In Windows, type Alt plus the minus sign. In Mac, type Option plus the minus sign.
 
 We'll also be writing multi-line formulas, joining each line with an odd device called -- don't ask why -- a pipe. It looks like this: <code>%>%</code>. And yes, there's a shortcut: In Windows, type Shift-Control-M; in Mac, type Shift-Command-M.
+
+In R we usually work in "projects" and keep the data in one place. While we won't be creating a project for this class, we will go partway -- we'll set a working directory. The directory we'll use is whichever one the IRE-NICAR staff placed our data. (We'll find out before class.) To set the working directory go to the Session menu and click on Set Working Directory. We'll then look for the correct directory. Now it's time to import some data.
+
+    > AlligatorBites <- read_csv("Alligator_Bites.csv")
+    > View(AlligatorBites)
+    
+Pay attention to spelling and capitalization! If you typed small-v "view", you got an error.    
