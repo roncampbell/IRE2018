@@ -1,5 +1,7 @@
 ![](https://github.com/roncampbell/IRE2018/blob/master/GatoR.png?raw=true)
 
+# Intro to R
+
 <code>R</code> is a powerful open-source programming and statistical language. Scientists, statisticians and, increasingly, journalists are using it to find answers in mountains of data. The language itself, known as "base R", can do quite a bit. But computer scientists have built more than 12,000 add-on tools or <code>packages</code> atop base R, vastly expanding its capabilities. As a result, people turn to R for everything from analyzing multi-year medical studies to preparing charts and drawing maps.
 
 The most popular of these packages is actually a suite of about 20 tools known as the <code>tidyverse</code>. It was developed largely by Hadley Wickham, chief scientist at <code>R Studio</code>, the graphical user interface for R. The tidyverse includes tools for importing, manipulating, editing and visualizing data; we'll be using it extensively in this class.
