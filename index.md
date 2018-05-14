@@ -9,9 +9,9 @@ Investigative Reporters & Editors National Conference
 June 14-17, 2018
 Orlando
 
-<code>R</code> is a powerful open-source programming and statistical language. Scientists, statisticians and, increasingly, journalists are using it to find answers in mountains of data. The language itself, known as "base R", can do quite a bit. But computer scientists have built more than 12,000 add-on tools or <code>packages</code> atop base R, vastly expanding its capabilities. As a result, people turn to R for everything from analyzing multi-year medical studies to preparing charts and drawing maps.
+<code>R</code> is a powerful open-source programming and statistical language. Scientists, statisticians and, increasingly, journalists are using it to find answers in mountains of data. The language itself, known as "base R", can do quite a bit. But computer scientists have built more than 12,000 add-on tools or <code>packages</code> atop base R, vastly expanding its capabilities. People turn to R for everything from analyzing multi-year medical studies to preparing charts and drawing maps.
 
-The most popular of these packages is actually a suite of about 20 tools known as the <code>tidyverse</code>. It was developed largely by Hadley Wickham, chief scientist at <code>R Studio</code>, the graphical user interface for R. The tidyverse includes tools for importing, manipulating, editing and visualizing data; we'll be using it extensively in this class.
+The most popular of these packages is a suite of about 20 tools known as the <code>tidyverse</code>. It was developed largely by Hadley Wickham, chief scientist at <code>R Studio</code>, the graphical user interface for R. The tidyverse includes tools for importing, manipulating, editing and visualizing data; we'll be using it extensively in this class.
 
 Before we go further, let's cover a few rules of the road. As a programming language, R is very powerful. You can do a lot of work quickly. The tradeoff is a steep learning curve. While there usually are two or three (or more) ways to do the same task in R, there are an infinite number of ways to do it wrong. Spelling and capitalization are extremely important; the strictest copy editor you ever met was easy going compared with R.
 
@@ -32,4 +32,27 @@ In R we usually work in "projects" and keep the data in one place. While we won'
     > AlligatorBites <- read_csv("Alligator_Bites.csv")
     > View(AlligatorBites)
     
-Pay attention to spelling and capitalization! If you typed small-v "view", you got an error.    
+Pay attention to spelling and capitalization! If you typed small-v "view", you got an error. While we're at it, let's interview the data, starting by getting the number of rows and columns. We can get that with the command dim(), which is short for "dimensions".
+
+    > dim(AlligatorBites)
+    [1] 401  25
+    
+Next let's find out how many of the bites were fatal. We can get the answer with a frequency table on the column Nonfatal_Fatal. Since we're asking for information about a column, not the data frame as a whole, we have to tell R to look for a particular column in a particular data frame. We do that by using a $-sign to connect the column with the data frame.
+
+    > table(AlligatorBites$Nonfatal_Fatal)
+
+    D   F   N 
+    5  24 372 
+    
+There's our answer: 24 fatal bites, 372 nonfatal and 5 well, I don't know what those 5 are. Maybe the person bit the gator!
+
+How many of the victims were males, and how many were female? Again, a frequency table will answer the question. See if you can do this on your own.
+
+    > table(AlligatorBites$Sex)
+
+     F   M 
+    77 324 
+    
+Don't forget to attach the data frame to the column name.
+
+
