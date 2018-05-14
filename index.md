@@ -5,8 +5,8 @@
 By Ronald Campbell / NBC Owned Television Stations
 ron.campbell@nbcuni.com
 
-Investigative Reporters & Editors National Conference
-June 14-17, 2018
+Investigative Reporters & Editors National Conference /
+June 14-17, 2018 /
 Orlando
 
 <code>R</code> is a powerful open-source programming and statistical language. Scientists, statisticians and, increasingly, journalists are using it to find answers in mountains of data. The language itself, known as "base R", can do quite a bit. But computer scientists have built more than 12,000 add-on tools or <code>packages</code> atop base R, vastly expanding its capabilities. People turn to R for everything from analyzing multi-year medical studies to preparing charts and drawing maps.
@@ -66,10 +66,58 @@ Is there a difference in the median age of male and female victims? We can find 
         group_by(Sex) %>% 
         summarise(MedAge = median(Age, na.rm=TRUE))
         # A tibble: 2 x 2
-  Sex   MedAge
-  <chr>  <dbl>
-1 F        37.
-2 M        34.
+    Sex   MedAge
+    <chr>  <dbl>
+    1 F        37.
+    2 M        34.
     
 A note on the spelling of "summarise": Here I'm using dplyr, one of the best tools in the tidyverse. The author, Hadley Wickham, is from New Zealand and favors (favours?) British spellings. He kindly allows American spellings such as "summarize" and "color", but I've noticed that "summarize" with a "z" sometimes triggers errors.    
     
+Notice that column, Gator_Fed? Some people like to feed the alligators. This is not a good idea.
+
+Let's look for people who fed gators and got bitten for their trouble. We'll use the filter function to find them. Then we'll group by sex. Finally, we'll count them and calculate the median age by sex. Any bets on which sex is more likely to feed gators?
+
+A couple of points before we get into this next exercise: First, while we occasionally assign a variable with an equal sign (and more often with the assignment operator), we specify a value for variables with a double equal sign (==). (If you're having trouble wrapping your head around that concept, here's an example: variable = "weather", value == "cloudy".)  Second, in R and in most statistical languages the standard shortcut for "this is how many things there are" is "n" or "n()". 
+
+    AlligatorBites %>% 
+        filter(Gator_Fed == "Y") %>% 
+        group_by(Sex) %>% 
+        summarise(Count = n(),
+                MedAge = median(Age, na.rm=TRUE))
+    # A tibble: 2 x 3
+    Sex   Count MedAge
+    <chr> <int>  <dbl>
+    1 F        12    45.
+    2 M        50    38. 
+    
+In this script, the variable Gator_Fed had two possible values, "Y" or "N"; we specified "Y", using a double-equal sign. In the summarise portion, we created a new variable, Count, to hold the number of persons in each sex who were bitten after feeding a gator. And as we expected, four times more men than women thought it would be a good idea to feed a gator - and ended up literally feeding a gator!
+
+How big are the gators that enjoy human snacks? Again, we have to account for missing values by removing the NA's from the mix. This time we'll calculate the mean, or mathematical average.
+
+    > mean(AlligatorBites$Length_Feet, na.rm=TRUE)
+    [1] 7.121622
+    
+We have 70 years worth of alligator bite records. In which years did the most bites occur? We have a column called “Year”, and we can group on that to find the answer. But we really don't want to pick through seven decades worth of records. R can sort them for us. Better yet, it can display the top years. 
+
+    > AlligatorBites %>% 
+         group_by(Year) %>% 
+         summarise(Count = n()) %>% 
+         arrange(desc(Count)) %>%        # sorting command
+         top_n(10)                       # display top 10
+    Selecting by Count
+    # A tibble: 13 x 2
+    Year Count
+   <int> <int>
+     1  2001    16
+     2  2013    15
+     3  1977    14
+     4  2007    14
+     5  1986    13
+     6  1990    13
+     7  1995    13
+     8  2000    13
+     9  2002    13
+    10  1993    12
+    11  2004    12
+    12  2006    12
+    13  2017    12
