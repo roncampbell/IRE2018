@@ -126,5 +126,6 @@ What time of day do alligators bite most often? The Time column gives us time on
 
     > ggplot(AlligatorBites, aes(Time)) +
          geom_histogram()
-         
+
+
     ![](https://github.com/roncampbell/IRE2018/blob/master/BitesByTime.png?raw=true)     
