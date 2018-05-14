@@ -154,8 +154,8 @@ And here are the top results:
     # A tibble: 40 x 2
      Water_Body                   count
       <chr>                        <int>
-    1 Unnamed pond                   100
-    2 Unnamed canal                   20
-    3 Unnamed retention pond          16
-    4 <NA>                            11
-    5 Juniper Creek                    4
+    Unnamed pond                   100
+    Unnamed canal                   20
+    Unnamed retention pond          16
+    <NA>                            11
+    Juniper Creek                    4
