@@ -19,15 +19,15 @@ Before we go further, let's cover a few rules of the road. As a programming lang
 
 Since R is open-source, it is free. You can download R and most packages at [CRAN](https://cran.r-project.org/), the Comprehensive R Archive Network. Installing packages is a two-step process. If you were to install the tidyverse, for example, you would enter the following commands at the console. Remarks to the right, separated by hash signs, are comments, which the computer ignores.
 
-    > install.packages("tidyverse")     # command to install package
+    > install.packages("tidyverse")     # command to install package; package within quote marks
 
-The crack IRE-NICAR staff has already installed R, R Studio and the tidyverse on the computers we'll be using in this class. But whenever you start R, you must load a package in memory. Here's how you do that:
+The crack IRE-NICAR staff has already installed R, R Studio and the tidyverse on the computers we'll be using in this class. But whenever you start R, you must load the packages you need in memory. Here's how you do that:
 
-    > library(tidyverse)      # notice no quote mark
+    > library(tidyverse)      # notice no quote marks
 
-We're going to be creating several tables (known in R as data frames), and of course we'll be naming them. We use an arrow-like thing called an <code>assignment operator</code> to do that. Here it is: <code><-</code>. You'll be using it a lot, and there's a shortcut: In Windows, type Alt plus the minus sign. In Mac, type Option plus the minus sign.
+We're going to be creating several tables, known in R as <code>data frames</code>, and naming them as we go. We use an arrow-like thing called an <code>assignment operator</code> to do that. Here it is: <code><-</code>. You'll be using it a lot, and there's a shortcut: In Windows, type Alt plus the minus sign. In Mac, type Option plus the minus sign.
 
-We'll also be writing multi-line formulas, joining each line with an odd device called -- don't ask why -- a pipe. It looks like this: <code>%>%</code>. And yes, there's a shortcut: In Windows, type Shift-Control-M; in Mac, type Shift-Command-M.
+We'll also be writing multi-line formulas, joining each line with an odd device called a <code>pipe</code>. It looks like this: <code>%>%</code>. And yes, there's a shortcut: In Windows, type Shift-Control-M; in Mac, type Shift-Command-M.
 
 In R we usually work in "projects" and keep the data in one place. While we won't be creating a project for this class, we will go partway -- we'll set a working directory. The directory we'll use is whichever one the IRE-NICAR staff placed our data. (We'll find out before class.) To set the working directory go to the Session menu and click on Set Working Directory. We'll then look for the correct directory. Now it's time to import some data.
 
@@ -46,7 +46,7 @@ Next let's find out how many of the bites were fatal. We can get the answer with
     D   F   N 
     5  24 372 
     
-There's our answer: 24 fatal bites, 372 nonfatal and 5 well, I don't know what those 5 are. Maybe the person bit the gator!
+There's our answer: 24 fatal bites, 372 nonfatal and five, well, I don't know what those five are. Maybe the person bit the gator!
 
 How many of the victims were males, and how many were female? Again, a frequency table will answer the question. See if you can do this on your own.
 
@@ -57,7 +57,7 @@ How many of the victims were males, and how many were female? Again, a frequency
     
 Don't forget to attach the data frame to the column name.
 
-How old is the typical bite victim? Notice that the Age column has several NA's; NA stands for "Not Available", meaning the victim's age is unknown. NA's are not - repeat, underscore, not - the same as zero; we have no idea what they are. So we have to tell R and other statistical software to ignore them. We do that with the command na.rm = TRUE, which means "remove all NA's". This overrides R's default behavior.
+How old is the typical bite victim? Notice that the Age column has several NA's. NA stands for "Not Available", meaning the victim's age is unknown. NA's are not - repeat, underscore, not - the same as zero; we have no idea what they are. So we have to tell R to ignore them. We do that with the command na.rm = TRUE, which means "remove all NA's". This overrides R's default behavior.
 
     > median(AlligatorBites$Age, na.rm=TRUE)
     [1] 34
@@ -73,13 +73,13 @@ Is there a difference in the median age of male and female victims? We can find 
     1 F        37.
     2 M        34.
     
-A note on the spelling of "summarise": Here I'm using dplyr, one of the best tools in the tidyverse. The author, Hadley Wickham, is from New Zealand and favors (favours?) British spellings. He kindly allows American spellings such as "summarize" and "color", but I've noticed that "summarize" with a "z" sometimes triggers errors.    
+A tibble is a type of data frame. You may have noticed how I spelled "summarise": I'm using dplyr, one of the best tools in the tidyverse. The author, Hadley Wickham, is from New Zealand and favors (favours?) British spellings. He kindly allows American spellings such as "summarize" and "color", but I've noticed that "summarize" with a "z" sometimes triggers errors, so I always use "summarise" with an "s".    
     
 Notice that column, Gator_Fed? Some people like to feed the alligators. This is not a good idea.
 
 Let's look for people who fed gators and got bitten for their trouble. We'll use the filter function to find them. Then we'll group by sex. Finally, we'll count them and calculate the median age by sex. Any bets on which sex is more likely to feed gators?
 
-A couple of points before we get into this next exercise: First, while we occasionally assign a variable with an equal sign (and more often with the assignment operator), we specify a value for variables with a double equal sign (==). (If you're having trouble wrapping your head around that concept, here's an example: variable = "weather", value == "cloudy".)  Second, in R and in most statistical languages the standard shortcut for "this is how many things there are" is "n" or "n()". 
+A couple of points before we get into this next exercise: First, while we occasionally assign a variable with an equal sign (and more often with the assignment operator), we specify values for those variables with a double equal sign (==). (If you're having trouble wrapping your head around that concept, here's an example: variable = "weather", value == "cloudy".)  Second, in R and in most statistical languages the standard shortcut for "the number of persons or things" is "n" or "n()". 
 
     AlligatorBites %>% 
         filter(Gator_Fed == "Y") %>% 
@@ -137,7 +137,7 @@ The column Water_Body tells us where the gator calls home. We can see at a glanc
 
 Before writing the script, let's point out something. The "History" tab keeps a record of your current session - each command, in the order you enter it. If you want to re-enter a command, just click on the appropriate line in the history panel, and it will appear in the console. This is an incredibly handy feature. You can save the history indefinitely along with the rest of your workspace with the command save.image("xxx.RData") where "xxx" is the name you give work.
 
-Well, if R remembers each command, why write a script? There are at least two answers. The first is that after about five or six lines, the console becomes pretty awkward; remember - one typo and the command fails. I've written 50- and 80-line scripts. The second reason is that you may want to recycle your scripts, revising them slightly for new data. You simply can't do that in the console. In the script editor, it's a breeze.
+If R remembers each command, why write a script? Here are two answers. The console becomes a pretty awkward scripting tool after five or six lines; remember - one typo, and the command fails. I've written 50- and 80-line scripts. Second, you might want to recycle your scripts, modifying them slightly for new data. You simply can't do that in the console. In the script editor, it's a breeze.
 
 Here's our script:
 
