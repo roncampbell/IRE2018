@@ -127,3 +127,8 @@ What time of day do alligators bite most often? The Time column gives us time on
     > ggplot(AlligatorBites, aes(Time)) +
          geom_histogram()
     
+ggplot is a graphic program built into the tidyverse. It can build histograms, bar charts, scatterplots and a wealth of other high-quality charts in just a few lines of code. Here it creates a histogram by taking the data frame (AlligatorBites), using the column Time as the aesthetic (aes in ggplot-speak) and adding a "geom" or geometric object. The one we want is a histogram, which is useful for frequencies.
+
+![](https://github.com/roncampbell/IRE2018/blob/master/BitesByTime.png?raw=true)
+
+
