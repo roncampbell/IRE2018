@@ -146,7 +146,7 @@ Here's our script:
         group_by(Water_Body) %>% 
         summarise(count = n()) %>% 
         arrange(desc(count)) %>% 
-        top_n(n=25)
+        top_n(25)
 
 And here are the top results:
 
