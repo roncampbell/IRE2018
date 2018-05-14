@@ -55,4 +55,21 @@ How many of the victims were males, and how many were female? Again, a frequency
     
 Don't forget to attach the data frame to the column name.
 
+How old is the typical bite victim? Notice that the Age column has several NA's; NA stands for "Not Available", meaning the victim's age is unknown. NA's are not - repeat, underscore, not - the same as zero; we have no idea what they are. So we have to tell R and other statistical software to ignore them. We do that with the command na.rm = TRUE, which means "remove all NA's". This overrides R's default behavior.
 
+    > median(AlligatorBites$Age, na.rm=TRUE)
+    [1] 34
+
+Is there a difference in the median age of male and female victims? We can find out by adding the variable Sex and using the function group_by. We'll also use the pipe tool that we introduced earlier.
+
+    AlligatorBites %>% 
+        group_by(Sex) %>% 
+        summarise(MedAge = median(Age, na.rm=TRUE))
+        # A tibble: 2 x 2
+  Sex   MedAge
+  <chr>  <dbl>
+1 F        37.
+2 M        34.
+    
+A note on the spelling of "summarise": Here I'm using dplyr, one of the best tools in the tidyverse. The author, Hadley Wickham, is from New Zealand and favors (favours?) British spellings. He kindly allows American spellings such as "summarize" and "color", but I've noticed that "summarize" with a "z" sometimes triggers errors.    
+    
