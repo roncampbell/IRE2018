@@ -11,7 +11,7 @@ Orlando
 
 First of a two-part class. The second part is taught by T. Christian Miller of Pro Publica. His handout is available at: xxx
 
-<code>R</code> is a powerful open-source programming and statistical language. Scientists, statisticians and, increasingly, journalists are using it to find answers in mountains of data. The language itself, known as "base R", can do quite a bit. But computer scientists have built more than 12,000 add-on tools or <code>packages</code> atop base R, vastly expanding its capabilities. People turn to R for everything from analyzing multi-year medical studies to preparing charts and drawing maps.
+<code>R</code> is a powerful open-source programming and statistical language. Scientists, statisticians and, increasingly, journalists are using it to find answers in mountains of data. People turn to R for everything from analyzing multi-year medical studies to preparing charts and drawing maps. The language itself, known as "base R", can do quite a bit. But computer scientists have vastly expanded its capabilities with more than 12,000 add-on tools or <code>packages</code>. 
 
 The most popular of these packages is a suite of about 20 tools known as the <code>tidyverse</code>. It was developed largely by Hadley Wickham, chief scientist at <code>R Studio</code>, the graphical user interface for R. The tidyverse includes tools for importing, manipulating, editing and visualizing data; we'll be using it extensively in this class.
 
@@ -21,7 +21,7 @@ Since R is open-source, it is free. You can download R and most packages at [CRA
 
     > install.packages("tidyverse")     # command to install package; package within quote marks
 
-The crack IRE-NICAR staff has already installed R, R Studio and the tidyverse on the computers we'll be using in this class. But whenever you start R, you must load the packages you need in memory. Here's how you do that:
+The crack IRE-NICAR staff has already installed R, R Studio and the tidyverse on the computers we'll be using in this class. But whenever you start R, you must load the packages you need in memory. Here's how you will do that in this class with the tidyverse:
 
     > library(tidyverse)      # notice no quote marks
 
@@ -29,7 +29,7 @@ We're going to be creating several tables, known in R as <code>data frames</code
 
 We'll also be writing multi-line formulas, joining each line with an odd device called a <code>pipe</code>. It looks like this: <code>%>%</code>. And yes, there's a shortcut: In Windows, type Shift-Control-M; in Mac, type Shift-Command-M.
 
-In R we usually work in "projects" and keep the data in one place. While we won't be creating a project for this class, we will go partway -- we'll set a working directory. The directory we'll use is whichever one the IRE-NICAR staff placed our data. (We'll find out before class.) To set the working directory go to the Session menu and click on Set Working Directory. We'll then look for the correct directory. Now it's time to import some data.
+In R we usually work in "projects" and keep the data in one place. While we won't be creating a project for this class, we will go partway -- we'll set a working directory. The directory we'll use is wherever the IRE-NICAR staff placed our data. (We'll find out before class.) To set the working directory go to the Session menu and click on Set Working Directory. We'll then look for the correct directory. Now it's time to import some data.
 
     > AlligatorBites <- read_csv("Alligator_Bites.csv")
     > View(AlligatorBites)
@@ -79,7 +79,7 @@ Notice that column, Gator_Fed? Some people like to feed the alligators. This is 
 
 Let's look for people who fed gators and got bitten for their trouble. We'll use the filter function to find them. Then we'll group by sex. Finally, we'll count them and calculate the median age by sex. Any bets on which sex is more likely to feed gators?
 
-A couple of points before we get into this next exercise: First, while we occasionally assign a variable with an equal sign (and more often with the assignment operator), we specify values for those variables with a double equal sign (==). (If you're having trouble wrapping your head around that concept, here's an example: variable = "weather", value == "cloudy".)  Second, in R and in most statistical languages the standard shortcut for "the number of persons or things" is "n" or "n()". 
+A couple of points before we do this exercise: First, while we occasionally assign a variable with an equal sign (and more often with the assignment operator), we specify values for variables with a double equal sign (==). (If you're having trouble wrapping your head around that concept, here's an example: variable = "weather", value == "cloudy".)  Second, in R and in most statistical languages the standard shortcut for "the number of persons or things" is "n" or "n()". 
 
     AlligatorBites %>% 
         filter(Gator_Fed == "Y") %>% 
@@ -135,7 +135,7 @@ ggplot can build bar charts, pie charts, line charts and maps as well as histogr
 
 The column Water_Body tells us where the gator calls home. We can see at a glance that there are many choices. But we can find the biggest gator holes with a script. In R Studio, click on the icon with a green plus-sign at top left; in the drop-down menu, the first item will be "R Script". Click on that. 
 
-Before writing the script, let's point out something. The "History" tab keeps a record of your current session - each command, in the order you enter it. If you want to re-enter a command, just click on the appropriate line in the history panel, and it will appear in the console. This is an incredibly handy feature. You can save the history indefinitely along with the rest of your workspace with the command save.image("xxx.RData") where "xxx" is the name you give work.
+Before writing the script, let's point out something. The "History" tab keeps a record of your current session - each command, in the order you enter it. If you want to re-enter a command, just click on the appropriate line in the history panel, and it will appear in the console. This is an incredibly handy feature. You can save the history indefinitely along with the rest of your workspace with the command save.image("xxx.RData") where "xxx" is the name you give work. When you resume work, type load("xxx.RData") in the console.
 
 If R remembers each command, why write a script? Here are two answers. The console becomes a pretty awkward scripting tool after five or six lines; remember - one typo, and the command fails. I've written 50- and 80-line scripts. Second, you might want to recycle your scripts, modifying them slightly for new data. You simply can't do that in the console. In the script editor, it's a breeze.
 
