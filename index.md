@@ -107,17 +107,18 @@ We have 70 years worth of alligator bite records. In which years did the most bi
     Selecting by Count
     # A tibble: 13 x 2
     Year Count
-   <int> <int>
-     1  2001    16
-     2  2013    15
-     3  1977    14
-     4  2007    14
-     5  1986    13
-     6  1990    13
-     7  1995    13
-     8  2000    13
-     9  2002    13
-    10  1993    12
-    11  2004    12
-    12  2006    12
-    13  2017    12
+    <int> <int>
+    2001    16
+    2013    15
+    1977    14
+    2007    14
+    1986    13
+    1990    13
+    1995    13
+    2000    13
+    2002    13
+    1993    12
+    2004    12
+    2006    12
+    2017    12
+
