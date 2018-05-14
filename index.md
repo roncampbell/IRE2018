@@ -150,12 +150,17 @@ Here's our script:
 
 And here are the top results:
 
-> GatorLakes
+    > GatorLakes
     # A tibble: 40 x 2
-     Water_Body                   count
-      <chr>                        <int>
+    Water_Body                   count
+    <chr>                        <int>
     Unnamed pond                   100
     Unnamed canal                   20
     Unnamed retention pond          16
-    <NA>                            11
+    NA                              11
     Juniper Creek                    4
+    Lake Okeechobee - Okeechobee     4
+    Unnamed lake                     4
+    Alexander Springs                3
+    Lake Osborne                     3
+    Lake Tarpon                      3
