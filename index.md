@@ -122,3 +122,9 @@ We have 70 years worth of alligator bite records. In which years did the most bi
     2006    12
     2017    12
 
+What time of day do alligators bite most often? The Time column gives us time on a 24-hour scale, so it’s ideal for our purposes. We can answer our question with a histogram, a graphic representation of the data.
+
+    > ggplot(AlligatorBites, aes(Time)) +
+         geom_histogram()
+         
+    ![](https://github.com/roncampbell/IRE2018/blob/master/BitesByTime.png?raw=true)     
