@@ -3,11 +3,13 @@
 # Intro to R
 
 By Ronald Campbell / NBC Owned Television Stations
-ron.campbell@nbcuni.com
+<ron.campbell@nbcuni.com>
 
 Investigative Reporters & Editors National Conference /
 June 14-17, 2018 /
 Orlando
+
+First of a two-part class. The second part is taught by T. Christian Miller of Pro Publica. His handout is available at: xxx
 
 <code>R</code> is a powerful open-source programming and statistical language. Scientists, statisticians and, increasingly, journalists are using it to find answers in mountains of data. The language itself, known as "base R", can do quite a bit. But computer scientists have built more than 12,000 add-on tools or <code>packages</code> atop base R, vastly expanding its capabilities. People turn to R for everything from analyzing multi-year medical studies to preparing charts and drawing maps.
 
@@ -122,13 +124,38 @@ We have 70 years worth of alligator bite records. In which years did the most bi
     2006    12
     2017    12
 
-What time of day do alligators bite most often? The Time column gives us time on a 24-hour scale, so it’s ideal for our purposes. We can answer our question with a histogram, a graphic representation of the data.
+What time of day do alligators bite most often? The Time column gives us time on a 24-hour scale, so it’s ideal for our purposes. We can answer our question using ggplot, a graphic program built into the tidyverse.
 
     > ggplot(AlligatorBites, aes(Time)) +
          geom_histogram()
     
-ggplot is a graphic program built into the tidyverse. It can build histograms, bar charts, scatterplots and a wealth of other high-quality charts in just a few lines of code. Here it creates a histogram by taking the data frame (AlligatorBites), using the column Time as the aesthetic (aes in ggplot-speak) and adding a "geom" or geometric object. The one we want is a histogram, which is useful for frequencies.
+ggplot can build bar charts, pie charts, line charts and maps as well as histograms, and it can do all these things in a few lines of code. Here it creates a histogram by taking the data frame (AlligatorBites), using the column Time as the aesthetic ("aes" in ggplot-speak) and adding a "geom" or geometric object. A histogram is useful for frequencies.
 
 ![](https://github.com/roncampbell/IRE2018/blob/master/BitesByTime.png?raw=true)
 
+The column Water_Body tells us where the gator calls home. We can see at a glance that there are many choices. But we can find the biggest gator holes with a script. In R Studio, click on the icon with a green plus-sign at top left; in the drop-down menu, the first item will be "R Script". Click on that. 
 
+Before writing the script, let's point out something. The "History" tab keeps a record of your current session - each command, in the order you enter it. If you want to re-enter a command, just click on the appropriate line in the history panel, and it will appear in the console. This is an incredibly handy feature. You can save the history indefinitely along with the rest of your workspace with the command save.image("xxx.RData") where "xxx" is the name you give work.
+
+Well, if R remembers each command, why write a script? There are at least two answers. The first is that after about five or six lines, the console becomes pretty awkward; remember - one typo and the command fails. I've written 50- and 80-line scripts. The second reason is that you may want to recycle your scripts, revising them slightly for new data. You simply can't do that in the console. In the script editor, it's a breeze.
+
+Here's our script:
+
+    library(tidyverse)                  # load just in case
+    GatorLakes <- AlligatorBites %>%    # create new data frame
+        group_by(Water_Body) %>% 
+        summarise(count = n()) %>% 
+        arrange(desc(count)) %>% 
+        top_n(n=25)
+
+And here are the top results:
+
+> GatorLakes
+    # A tibble: 40 x 2
+     Water_Body                   count
+      <chr>                        <int>
+    1 Unnamed pond                   100
+    2 Unnamed canal                   20
+    3 Unnamed retention pond          16
+    4 <NA>                            11
+    5 Juniper Creek                    4
