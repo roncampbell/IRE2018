@@ -9,7 +9,7 @@ Investigative Reporters & Editors National Conference /
 June 14-17, 2018 /
 Orlando
 
-First of a two-part class. The second part is taught by T. Christian Miller of Pro Publica. His handout is available at: [tinyurl.com/IRE2018R] (tinyurl.com/IRE2018R)
+First of a two-part class. The second part is taught by T. Christian Miller of Pro Publica. His handout is available at: [tinyurl.com/IRE2018R](tinyurl.com/IRE2018R)
 
 <code>R</code> is a powerful open-source programming and statistical language. Scientists, statisticians and, increasingly, journalists are using it to find answers in mountains of data. People turn to R for everything from analyzing multi-year medical studies to preparing charts and drawing maps. The language itself, known as "base R", can do quite a bit. But computer scientists have vastly expanded its capabilities with more than 12,000 add-on tools or <code>packages</code>. 
 
